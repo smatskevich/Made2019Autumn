@@ -105,14 +105,14 @@ int KDTree::CountPointsInBbox(
     ++count;
   }
   if (depth % 2 == 0) {
-    if (node->left && bbox.left < node->median.lon) {
+    if (node->left && bbox.left <= node->median.lon) {
       count += CountPointsInBbox(bbox, node->left, depth + 1);
     }
     if (node->right && node->median.lon < bbox.right) {
       count += CountPointsInBbox(bbox, node->right, depth + 1);
     }
   } else {
-    if (node->left && bbox.bottom < node->median.lat) {
+    if (node->left && bbox.bottom <= node->median.lat) {
       count += CountPointsInBbox(bbox, node->left, depth + 1);
     }
     if (node->right && node->median.lat < bbox.top) {
